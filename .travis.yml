@@ -1,6 +1,3 @@
-before_install:
-  - if [ "$TRAVIS_ARCH" = "ppc64le" ]; then sudo apt-get update; sudo apt-get install erlang;sudo apt-get install rebar; fi
-  - pip install --user cpp-coveralls coveralls-merge
 language: erlang
 
 os: linux
@@ -9,6 +6,12 @@ arch:
   - ppc64le
 
 dist: xenial
+
+before_install:
+  - if [ "$TRAVIS_ARCH" = "ppc64le" ]; then sudo apt-get update; sudo apt-get install rebar; fi
+  - echo ${TRAVIS_HOME}
+  - echo ${archive_url}
+  - pip install --user cpp-coveralls coveralls-merge
 
 install:
   - rebar get-deps
